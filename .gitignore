@@ -28,3 +28,4 @@ dist-ssr
 __pycache__
 .venv
 .flaskenv
+.env

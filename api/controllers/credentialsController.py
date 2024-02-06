@@ -1,6 +1,11 @@
 from flask import jsonify
+from dotenv import load_dotenv
+
 import requests
 import os
+
+load_dotenv()
+
 
 def get_spotify_credentials():
     request_url = 'https://accounts.spotify.com/api/token'
@@ -8,4 +13,6 @@ def get_spotify_credentials():
     payload = { 'grant_type': 'client_credentials', 'client_secret': os.getenv("CLIENT_SECRET"), 'client_id': os.getenv("CLIENT_ID")}
     r = requests.post(request_url, headers=headers, data=payload).json()
 
-    return jsonify({"message": f"get Spotify Credentials {r}"})
+    return jsonify({"message": f"get Spotify Credentials {r} {os.getenv('CLIENT_SECRET')}  {os.getenv('CLIENT_ID')}"})
+
+
