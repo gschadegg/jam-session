@@ -1,0 +1,21 @@
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.api
+    env_file:
+      - ./api/.env
+    ports:
+      - '5000:80'
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.fe
+    ports:
+      - '8000:8000'
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./src:/app/src
+    depends_on:
+      - api

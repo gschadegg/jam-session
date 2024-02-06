@@ -1,0 +1,6 @@
+.dockerignore
+.git
+.cache
+node_modules
+.env
+/api

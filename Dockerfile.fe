@@ -1,0 +1,16 @@
+FROM node:21-alpine
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN yarn install
+
+COPY . . 
+#copy all but the api folder
+#needs to be interactive mode -it
+
+EXPOSE 8000
+
+CMD ["yarn", "vite"]
+
