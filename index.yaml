@@ -1,0 +1,82 @@
+openapi: '3.0.0'
+info:
+  version: '1.0.0'
+  title: 'Jam Session API'
+  description: Search for Artists or Songs
+servers:
+  - url: 'localhost:5000'
+paths:
+  /spotify/getCredentials:
+    # parameters:
+    #   - name: spacecraftId
+    #     description: The unique identifier of the spacecraft
+    #     in: path
+    #     required: true
+    #     schema:
+    #       $ref: '#/components/schemas/SpacecraftId'
+    get:
+      summary: Gets Spotify Credentials
+      responses:
+        '200':
+          description: Credentials successfully fetched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credentials'
+        # 404:
+        #   description: No Credentials were created
+        #   content:
+        #     application/json:
+        #       schema:
+        #         $ref: '#/components/schemas/Error'
+        # 500:
+        #   description: Unexpected error
+        #   content:
+        #     application/json:
+        #       schema:
+        #         $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Credentials:
+      type: object
+      required:
+        - message
+    # SpacecraftId:
+    #   description: The unique identifier of a spacecraft
+    #   type: string
+    # Spacecraft:
+    #   type: object
+    #   required:
+    #     - id
+    #     - name
+    #     - type
+    #   properties:
+    #     id:
+    #       $ref: '#/components/schemas/SpacecraftId'
+    #     name:
+    #       type: string
+    #     type:
+    #       type: string
+    #       enum:
+    #         - capsule
+    #         - probe
+    #         - satellite
+    #         - spaceplane
+    #         - station
+    #     description:
+    #       type: string
+    # Error:
+    #   type: object
+    #   required:
+    #     - message
+    #   properties:
+    #     message:
+    #       description: A human readable error message
+    #       type: string
+  # securitySchemes:
+  #   ApiKey:
+  #     type: apiKey
+  #     in: header
+  #     name: X-Api-Key
+# security:
+#   - ApiKey: []
