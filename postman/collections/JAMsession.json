@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "0eb127f0-f26f-43fe-b2c2-3214900d57ff",
+		"name": "JAMsession",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "10488479-0eb127f0-f26f-43fe-b2c2-3214900d57ff"
+	},
+	"item": [
+		{
+			"name": "API tests",
+			"item": [
+				{
+					"name": "Status",
+					"id": "88c3c345-c03b-4715-9e46-5494049204b9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Performance",
+					"id": "c2fb3ad2-79a0-4f6b-971a-44ed809d7a21",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "77e6f723-08ec-4f99-9e97-a796b69619af"
+		},
+		{
+			"name": "message.test",
+			"id": "9411a5f4-77c6-42d0-a489-74101175f7e8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "spotifyCredentials",
+			"id": "920733ef-406f-48a6-9518-4e1359047ff6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "96633e706e8c439d99e31e61696aeeef",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "5e1ca42124064399b87503f41f9e8670",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://accounts.spotify.com/api/token",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "0998ebe1-5524-4136-863e-4e7a02b663d0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:5000/message",
+			"id": "72832d6f-e081-497c-a95c-9484059099a4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCAL_URL}}/message",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"message"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "ce486d65-93fa-4fee-9e4e-44460da402d5",
+			"key": "LOCAL_URL",
+			"value": "localhost:5000"
+		}
+	]
+}

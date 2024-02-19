@@ -9,6 +9,7 @@ RUN yarn install
 COPY . . 
 #copy all but the api folder
 #needs to be interactive mode -it
+ENV LOCAL_API_URL api
 
 EXPOSE 8000
 

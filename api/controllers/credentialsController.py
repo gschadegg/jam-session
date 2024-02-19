@@ -1,18 +1,18 @@
+
 from flask import jsonify
-from dotenv import load_dotenv
-
-import requests
-import os
-
-load_dotenv()
+from api_requests import spotifyRequests
 
 
 def get_spotify_credentials():
-    request_url = 'https://accounts.spotify.com/api/token'
-    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-    payload = { 'grant_type': 'client_credentials', 'client_secret': os.getenv("CLIENT_SECRET"), 'client_id': os.getenv("CLIENT_ID")}
-    r = requests.post(request_url, headers=headers, data=payload).json()
+    try:
+        # call function to get spotify credentials
+        response = spotifyRequests.make_spotify_credentials_request()
+        return jsonify(response)
+        
+    except ValueError as e:
+        return jsonify({"error": {"message": e.args[0] }})
+    except Exception as e:
+        return jsonify({"error": {"message": e.args[0] }})
 
-    return jsonify({"message": f"get Spotify Credentials {r} {os.getenv('CLIENT_SECRET')}  {os.getenv('CLIENT_ID')}"})
 
 
