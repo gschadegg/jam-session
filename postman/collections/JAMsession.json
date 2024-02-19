@@ -7,147 +7,883 @@
 	},
 	"item": [
 		{
-			"name": "API tests",
+			"name": "Services",
 			"item": [
 				{
-					"name": "Status",
-					"id": "88c3c345-c03b-4715-9e46-5494049204b9",
+					"name": "get credentials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b7d02930-aa2c-473c-bcda-8c9504342081",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"auth_token\", jsonData.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "2e733988-9881-4089-b73c-a40a8c2c63d1",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": ""
+							"raw": "{{LOCAL_URL}}/spotify/getCredentials",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"getCredentials"
+							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Performance",
-					"id": "c2fb3ad2-79a0-4f6b-971a-44ed809d7a21",
+					"name": "search",
+					"id": "72832d6f-e081-497c-a95c-9484059099a4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
 						"url": {
-							"raw": ""
+							"raw": "{{LOCAL_URL}}/spotify/search?q=miles+davis&type=artist",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "miles+davis"
+								},
+								{
+									"key": "type",
+									"value": "artist",
+									"description": "Optional param; enum: artist, track"
+								}
+							]
 						}
 					},
 					"response": []
 				}
 			],
-			"id": "77e6f723-08ec-4f99-9e97-a796b69619af"
+			"id": "dbf60cf6-9349-4595-91c7-f2e50703b9a8"
 		},
 		{
-			"name": "message.test",
-			"id": "9411a5f4-77c6-42d0-a489-74101175f7e8",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "spotifyCredentials",
-			"id": "920733ef-406f-48a6-9518-4e1359047ff6",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+			"name": "API Tests: Search",
+			"item": [
+				{
+					"name": "missing auth",
+					"event": [
 						{
-							"key": "grant_type",
-							"value": "client_credentials",
-							"type": "text"
+							"listen": "test",
+							"script": {
+								"id": "814ed878-4877-4c6b-8e24-a8b6c8cab19d",
+								"exec": [
+									"// missing access token: manually set status 400 from spotify\r",
+									"pm.test(\"invalid bearer authentication\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(jsonData.error.message).to.eql(\"Only valid bearer authentication supported\");\r",
+									"    pm.expect(jsonData.error.status).to.eql(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						},
 						{
-							"key": "client_secret",
-							"value": "96633e706e8c439d99e31e61696aeeef",
-							"type": "text"
-						},
-						{
-							"key": "client_id",
-							"value": "5e1ca42124064399b87503f41f9e8670",
-							"type": "text"
+							"listen": "prerequest",
+							"script": {
+								"id": "a8f2e5d5-813d-440d-985b-4de3cec376ed",
+								"exec": [
+									"pm.environment.unset(\"auth_token\");"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
+					],
+					"id": "48b478a8-a564-4018-9f49-af2ae80f0733",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/search?q=coheed and cambria",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "coheed and cambria"
+								},
+								{
+									"key": "type",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://accounts.spotify.com/api/token",
-					"protocol": "https",
-					"host": [
-						"accounts",
-						"spotify",
-						"com"
+				{
+					"name": "invalid auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "814ed878-4877-4c6b-8e24-a8b6c8cab19d",
+								"exec": [
+									"// invalid access token: manually set status 401 from spotify\r",
+									"pm.test(\"invalid bearer authentication\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(jsonData.error.message).to.eql(\"Invalid access token\");\r",
+									"    pm.expect(jsonData.error.status).to.eql(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a8f2e5d5-813d-440d-985b-4de3cec376ed",
+								"exec": [
+									"pm.environment.set(\"auth_token\", \"InvalidAuth\");\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"path": [
-						"api",
-						"token"
-					]
+					"id": "e8951d7a-4094-4c00-a1b9-89c9da972d4a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/search?q=coheed and cambria",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "coheed and cambria"
+								},
+								{
+									"key": "type",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "failed query: invalid q",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "814ed878-4877-4c6b-8e24-a8b6c8cab19d",
+								"exec": [
+									"pm.test(\"invalid search query error\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"error\")\r",
+									"    pm.expect(jsonData.error.message).to.include(\"Invalid search query\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a8f2e5d5-813d-440d-985b-4de3cec376ed",
+								"exec": [
+									"const options = {\r",
+									"    url: `${pm.collectionVariables.get(\"LOCAL_URL\")}/spotify/getCredentials`,\r",
+									"    method: 'GET',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+									"    }\r",
+									"}\r",
+									"pm.sendRequest(options, function (err, response) {\r",
+									"    postman.setEnvironmentVariable(\"auth_token\", response.json().access_token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "4d7b667d-d104-40c2-9e60-2493b4e0b9d6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/search?q=   ",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "   "
+								},
+								{
+									"key": "type",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "failed query: missing q",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "814ed878-4877-4c6b-8e24-a8b6c8cab19d",
+								"exec": [
+									"pm.test(\"invalid search query error\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"error\")\r",
+									"    pm.expect(jsonData.error.message).to.include(\"Search query is required\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a8f2e5d5-813d-440d-985b-4de3cec376ed",
+								"exec": [
+									"const options = {\r",
+									"    url: `${pm.collectionVariables.get(\"LOCAL_URL\")}/spotify/getCredentials`,\r",
+									"    method: 'GET',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+									"    }\r",
+									"}\r",
+									"pm.sendRequest(options, function (err, response) {\r",
+									"    postman.setEnvironmentVariable(\"auth_token\", response.json().access_token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "ea515e32-0079-485a-b34d-d5871d6bca07",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/search",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "successful query: no type param",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "814ed878-4877-4c6b-8e24-a8b6c8cab19d",
+								"exec": [
+									"pm.test(\"response has data object with 2 children objects, tracks and artists\", function () {\r",
+									"    pm.response.to.have.jsonBody(\"data\");\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.have.property(\"artists\")\r",
+									"    pm.expect(jsonData.data).to.have.property(\"tracks\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a8f2e5d5-813d-440d-985b-4de3cec376ed",
+								"exec": [
+									"const options = {\r",
+									"    url: `${pm.collectionVariables.get(\"LOCAL_URL\")}/spotify/getCredentials`,\r",
+									"    method: 'GET',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+									"    }\r",
+									"}\r",
+									"pm.sendRequest(options, function (err, response) {\r",
+									"    postman.setEnvironmentVariable(\"auth_token\", response.json().access_token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "953ac6e3-2452-45ba-a6f1-30815120c141",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/search?q=coheed and cambria",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "coheed and cambria"
+								},
+								{
+									"key": "type",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "successful query: invalid type param",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "814ed878-4877-4c6b-8e24-a8b6c8cab19d",
+								"exec": [
+									"pm.test(\"invalid type is ignored and search querys for tracks and artists\", function () {\r",
+									"    pm.response.to.have.jsonBody(\"data\");\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.have.property(\"artists\")\r",
+									"    pm.expect(jsonData.data).to.have.property(\"tracks\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a8f2e5d5-813d-440d-985b-4de3cec376ed",
+								"exec": [
+									"const options = {\r",
+									"    url: `${pm.collectionVariables.get(\"LOCAL_URL\")}/spotify/getCredentials`,\r",
+									"    method: 'GET',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+									"    }\r",
+									"}\r",
+									"pm.sendRequest(options, function (err, response) {\r",
+									"    postman.setEnvironmentVariable(\"auth_token\", response.json().access_token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6c443592-9793-46c1-86f1-9ed576fdee02",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/search?q=coheed and cambria&type=invalid",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "coheed and cambria"
+								},
+								{
+									"key": "type",
+									"value": "invalid"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "successful query: type artist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "814ed878-4877-4c6b-8e24-a8b6c8cab19d",
+								"exec": [
+									"pm.test(\"response has data object with 1 child object; artists only\", function () {\r",
+									"    pm.response.to.have.jsonBody(\"data\");\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.have.property(\"artists\")\r",
+									"    pm.expect(jsonData.data).to.not.have.property(\"tracks\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a8f2e5d5-813d-440d-985b-4de3cec376ed",
+								"exec": [
+									"const options = {\r",
+									"    url: `${pm.collectionVariables.get(\"LOCAL_URL\")}/spotify/getCredentials`,\r",
+									"    method: 'GET',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+									"    }\r",
+									"}\r",
+									"pm.sendRequest(options, function (err, response) {\r",
+									"    postman.setEnvironmentVariable(\"auth_token\", response.json().access_token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "43c40560-9623-4f89-8049-7b263a261b26",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/search?q=coheed and cambria&type=artist",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "coheed and cambria"
+								},
+								{
+									"key": "type",
+									"value": "artist"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "successful query: type track",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "814ed878-4877-4c6b-8e24-a8b6c8cab19d",
+								"exec": [
+									"pm.test(\"response has data object with 1 child object; tracks only\", function () {\r",
+									"    pm.response.to.have.jsonBody(\"data\");\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.have.property(\"tracks\")\r",
+									"    pm.expect(jsonData.data).to.not.have.property(\"artists\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a8f2e5d5-813d-440d-985b-4de3cec376ed",
+								"exec": [
+									"const options = {\r",
+									"    url: `${pm.collectionVariables.get(\"LOCAL_URL\")}/spotify/getCredentials`,\r",
+									"    method: 'GET',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+									"    }\r",
+									"}\r",
+									"pm.sendRequest(options, function (err, response) {\r",
+									"    postman.setEnvironmentVariable(\"auth_token\", response.json().access_token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "8916560b-d8bd-4159-be36-deaed93abb8d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/search?q=coheed and cambria&type=track",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "coheed and cambria"
+								},
+								{
+									"key": "type",
+									"value": "track"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"id": "03c4e3c6-d047-4115-8f29-b0c06458ba2e",
+			"description": "API tests for `spotify/search` endpoint",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "60149d8f-9773-4505-8d42-3c166a20dae8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d9bbe7a-6be3-4da4-9c39-ca703c135d31",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"response is valid json and has a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});"
+						]
+					}
+				}
+			]
 		},
 		{
-			"name": "New Request",
-			"id": "0998ebe1-5524-4136-863e-4e7a02b663d0",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
+			"name": "API Tests: Credentials",
+			"item": [
+				{
+					"name": "success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b23cca3-5567-4e2b-8860-21c2537c293d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response sends access token string\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.access_token).to.be.string;\r",
+									"    pm.expect(jsonData.token_type).to.eql(\"Bearer\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "827b88c7-7e6a-4131-8330-935af570ecb1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/spotify/getCredentials",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"spotify",
+								"getCredentials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "failed credentials: bad request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b23cca3-5567-4e2b-8860-21c2537c293d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"}); \r",
+									"\r",
+									"pm.test(\"Invalid client error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"error\")\r",
+									"    pm.expect(jsonData.error).to.include(\"invalid_client\")\r",
+									"});\r",
+									"\r",
+									"// pm.sendRequest(`${pm.globals.get(\"LOCAL_URL\")}/spotify/getCredentials`, function (err, response) {\r",
+									"//     console.log(response.json());\r",
+									"// });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "bd4062be-2a65-4391-9ef1-9ee2eaa3d609",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-mock-response-name",
+								"value": "400 Bad Request",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://1fb7fd2d-6200-4b48-9c6c-e3b867b51585.mock.pstmn.io/spotify/getCrendetials",
+							"protocol": "https",
+							"host": [
+								"1fb7fd2d-6200-4b48-9c6c-e3b867b51585",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"spotify",
+								"getCrendetials"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"id": "77e6f723-08ec-4f99-9e97-a796b69619af",
+			"description": "API tests for `spotify/getCredentials` endpoint"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1f07b3e9-6617-42bd-b51a-093f0956b7f8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		},
 		{
-			"name": "localhost:5000/message",
-			"id": "72832d6f-e081-497c-a95c-9484059099a4",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{LOCAL_URL}}/message",
-					"host": [
-						"{{LOCAL_URL}}"
-					],
-					"path": [
-						"message"
-					]
-				}
-			},
-			"response": []
+			"listen": "test",
+			"script": {
+				"id": "75823dd4-346e-41fb-8fe3-ec7ecc03aa7c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"variable": [
 		{
-			"id": "ce486d65-93fa-4fee-9e4e-44460da402d5",
+			"id": "acedecb2-0205-4446-9996-31fec3fb3374",
 			"key": "LOCAL_URL",
 			"value": "localhost:5000"
 		}
