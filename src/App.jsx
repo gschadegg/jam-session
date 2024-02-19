@@ -11,6 +11,7 @@ function App() {
     const exampleRun = async () => {
       try {
         const res = await fetch('/api/message')
+        console.log('res', res)
         const result = await res.json()
         console.log('result', result)
       } catch (e) {

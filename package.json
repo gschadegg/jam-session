@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "start-api": "cd api && .venv/Scripts/flask run --no-debugger",
-    "test:api": "start yarn run start-api && yarn run postman-login && yarn run postman-run-collection && yarn run postman-lint",
+    "start-api-waitress": "cd api && python server.py",
+    "test:api": "start yarn start-api && yarn postman-login && yarn postman-run-collection && yarn postman-lint",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
