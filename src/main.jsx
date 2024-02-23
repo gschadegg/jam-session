@@ -6,13 +6,15 @@ import './index.css'
 import { SpotifyAuthProvider } from './hooks/useSpotifyAuth.jsx'
 import { NotificationProvider } from './hooks/useNotification.jsx'
 import { SearchDataProvider } from './hooks/useSearchData.jsx'
-
+import { PlaylistProvider } from './hooks/usePlaylist.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <SpotifyAuthProvider>
       <NotificationProvider>
         <SearchDataProvider>
-          <App />
+          <PlaylistProvider>
+            <App />
+          </PlaylistProvider>
         </SearchDataProvider>
       </NotificationProvider>
     </SpotifyAuthProvider>

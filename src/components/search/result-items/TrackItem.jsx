@@ -1,5 +1,9 @@
+import { usePlaylist } from '../../../hooks/usePlaylist'
+
 // display track search result item
 const TrackItem = ({ track }) => {
+  const { insertTrack } = usePlaylist()
+
   return (
     <div
       className="w-full max-w-full flex py-1 hover:bg-gray-100"
@@ -16,7 +20,12 @@ const TrackItem = ({ track }) => {
         <div className="items-start">
           <div className="text-gray-900 font-bold text-xl mb-2 flex">
             <span className="flex-1">{track?.name}</span>
-            <button className="btn btn-outline btn-neutral btn-sm">Add</button>
+            <button
+              onClick={() => insertTrack(track)}
+              className="btn btn-outline btn-neutral btn-sm"
+            >
+              Add
+            </button>
           </div>
           {track?.artists[0] && (
             <div className="flex items-center">
