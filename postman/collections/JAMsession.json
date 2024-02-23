@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "0eb127f0-f26f-43fe-b2c2-3214900d57ff",
 		"name": "JAMsession",
+		"description": "API with 2 endpoints\n\n- spotify/search\n    \n- spotify/getCredentials",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_uid": "10488479-0eb127f0-f26f-43fe-b2c2-3214900d57ff"
 	},
@@ -106,7 +107,8 @@
 					"response": []
 				}
 			],
-			"id": "dbf60cf6-9349-4595-91c7-f2e50703b9a8"
+			"id": "dbf60cf6-9349-4595-91c7-f2e50703b9a8",
+			"description": "Services available within API"
 		},
 		{
 			"name": "API Tests: Search",
@@ -815,10 +817,7 @@
 									"    pm.expect(jsonData).to.have.property(\"error\")\r",
 									"    pm.expect(jsonData.error).to.include(\"invalid_client\")\r",
 									"});\r",
-									"\r",
-									"// pm.sendRequest(`${pm.globals.get(\"LOCAL_URL\")}/spotify/getCredentials`, function (err, response) {\r",
-									"//     console.log(response.json());\r",
-									"// });"
+									""
 								],
 								"type": "text/javascript"
 							}
