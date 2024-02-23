@@ -3,7 +3,7 @@ import { usePlaylist } from '../../hooks/usePlaylist'
 // display track search result item
 const Track = ({ track }) => {
   const { removeTrack } = usePlaylist()
-  console.log('track', track)
+
   return (
     <li id={track.id} className=" bg-gray-200 mb-2">
       <div className="w-full flex-1 text-left flex flex-col leading-normal ">

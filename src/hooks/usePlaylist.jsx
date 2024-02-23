@@ -32,8 +32,8 @@ export const PlaylistProvider = ({ children }) => {
   // add track to playlist
   const insertTrack = (track) => {
     const playlistID = uuidv4()
-    console.log('playlistId', playlistID)
     const newTrack = { ...track, playlistID: playlistID }
+
     setPlaylist((prevState) => {
       const updatedList = [...prevState, newTrack]
       setLocalPlaylist(updatedList)
