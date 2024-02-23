@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react'
 
 const NotificationContext = React.createContext()
 
+// manages & makes available Notifications state
 export const NotificationProvider = ({ children }) => {
   const [message, setMessage] = useState(null)
   const [status, setStatus] = useState('info') // error, success, info, or warning
   const [showNotification, setShowNotification] = useState(false)
 
+  // set and trigger notification to display
   const setNotification = (message, status) => {
     setMessage(message)
     setStatus(status)
@@ -17,6 +19,7 @@ export const NotificationProvider = ({ children }) => {
     }, 8000)
   }
 
+  // Notification component
   const Notification = () => {
     const classes = `alert alert-${status} absolute left-[8.33%] w-10/12 z-50 top-[12px] opacity-100 `
     return showNotification ? (

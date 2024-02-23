@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 
 const SpotifyAuthContext = React.createContext()
 
+// manages & makes available spotify authentication state
 export const SpotifyAuthProvider = ({ children }) => {
   const [spotifyAuth, setSpotifyAuth] = useState('')
 

@@ -3,6 +3,7 @@ import { useSearchData } from '../../hooks/useSearchData'
 
 import ArtistItem from './result-items/ArtistItem'
 
+// Display for Search results
 const SearchDisplay = () => {
   const { searchData, currentQuery } = useSearchData()
   if (!searchData) return <p></p>

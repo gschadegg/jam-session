@@ -1,5 +1,6 @@
 import { useSearchData } from '../../../hooks/useSearchData'
 
+// display artist search result item
 const ArtistItem = ({ artist }) => {
   const { submitSearch } = useSearchData()
 

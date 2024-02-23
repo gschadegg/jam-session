@@ -1,4 +1,4 @@
-// coheed and cambria
+// display track search result item
 const TrackItem = ({ track }) => {
   return (
     <div

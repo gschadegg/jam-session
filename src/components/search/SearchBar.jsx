@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSpotifyAuth } from '../../hooks/useSpotifyAuth'
 import { useSearchData } from '../../hooks/useSearchData'
 
+// Search controls component
 const SearchBar = () => {
   const [query, setQuery] = useState('')
   const [type, setType] = useState('')

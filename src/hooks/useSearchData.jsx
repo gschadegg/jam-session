@@ -5,6 +5,7 @@ import { GET_SEARCH } from '../endpoints'
 
 const SearchDataContext = React.createContext()
 
+// manages & makes available current search data state
 export const SearchDataProvider = ({ children }) => {
   const [searchData, setSearchData] = useState(null)
   const [currentQuery, setCurrentQuery] = useState(null)
@@ -12,6 +13,7 @@ export const SearchDataProvider = ({ children }) => {
   const { spotifyAuth } = useSpotifyAuth()
   const { setNotification } = useNotification()
 
+  // make search request
   const submitSearch = async (query, type) => {
     const options = {
       method: 'GET',

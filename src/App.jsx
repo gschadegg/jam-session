@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import './App.css'
 
 import SearchBar from './components/search/SearchBar'
 import SearchDisplay from './components/search/SearchDisplay'
@@ -15,6 +14,7 @@ function App() {
   const { Notification, setNotification } = useNotification()
   const { searchData } = useSearchData()
 
+  // Fetches Spotify API Crendentials
   useEffect(() => {
     const getSpotifyAuth = async () => {
       try {
@@ -52,12 +52,15 @@ function App() {
           </section>
 
           <section className="items-center flex flex-col">
+            {/* Display getting started message if no current search */}
             {!searchData && <IntroMessage />}
+
             <SearchBar />
             <SearchDisplay />
           </section>
           <Notification />
         </div>
+        {/* Playlist Display */}
         <div className="drawer-side">
           <label
             htmlFor="my-drawer-2"
@@ -65,7 +68,6 @@ function App() {
             className="drawer-overlay"
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-            {/* Sidebar content here */}
             <li>
               <a>Sidebar Item 1</a>
             </li>
