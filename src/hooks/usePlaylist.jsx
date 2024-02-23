@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 const PlaylistContext = React.createContext()
 const localUserKey = 'jamPlaylist'
@@ -30,16 +31,21 @@ export const PlaylistProvider = ({ children }) => {
 
   // add track to playlist
   const insertTrack = (track) => {
+    const playlistID = uuidv4()
+    console.log('playlistId', playlistID)
+    const newTrack = { ...track, playlistID: playlistID }
     setPlaylist((prevState) => {
-      const updatedList = [...prevState, track]
+      const updatedList = [...prevState, newTrack]
       setLocalPlaylist(updatedList)
       return updatedList
     })
   }
 
   // remove track from playlist
-  const removeTrack = (id) => {
-    const updatedList = playlist.filter((track) => track.id !== id)
+  const removeTrack = (playlistID) => {
+    const updatedList = playlist.filter(
+      (track) => track.playlistID !== playlistID
+    )
     setLocalPlaylist(updatedList)
     setPlaylist(updatedList)
   }

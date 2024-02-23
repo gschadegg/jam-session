@@ -15,8 +15,8 @@ const PlaylistDisplay = () => {
           Clear List
         </button>
       </li>
-      {playlist.map((track) => (
-        <Track track={track} />
+      {playlist.map((track, idx) => (
+        <Track key={`${track.id}${idx}`} track={track} />
       ))}
     </ul>
   )

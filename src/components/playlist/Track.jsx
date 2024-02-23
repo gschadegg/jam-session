@@ -3,14 +3,14 @@ import { usePlaylist } from '../../hooks/usePlaylist'
 // display track search result item
 const Track = ({ track }) => {
   const { removeTrack } = usePlaylist()
-
+  console.log('track', track)
   return (
     <li id={track.id} className=" bg-gray-200 mb-2">
       <div className="w-full flex-1 text-left flex flex-col leading-normal ">
         <div className="w-full text-gray-900 font-bold text-lg flex justify-between">
           <span className="flex-1">{track?.name}</span>
           <button
-            onClick={() => removeTrack(track.id)}
+            onClick={() => removeTrack(track.playlistID)}
             className="btn btn-outline btn-neutral btn-xs"
           >
             Remove
