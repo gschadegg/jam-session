@@ -66,10 +66,10 @@ def general_search():
                 response['data'] = spotify_request
             else:
                 # if search type is not valid, call function to search spotify for both types
-                response = make_multi_requests(query, auth_token, 5)
+                response = make_multi_requests(query, auth_token, 20)
         else:
             # if search type is not provided, call function to search spotify for both types
-            response = make_multi_requests(query, auth_token, 5)
+            response = make_multi_requests(query, auth_token, 20)
 
         return jsonify(response)
         

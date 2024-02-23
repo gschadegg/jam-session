@@ -45,7 +45,7 @@ def make_spotify_credentials_request():
 
 
 @catch_exceptions
-def make_search_request(search_type, query, auth_token, limit=10, offset=0):
+def make_search_request(search_type, query, auth_token, limit=30, offset=0):
     try:
         # setup search get request data
         request_url = f'https://api.spotify.com/v1/search'

@@ -13,6 +13,3 @@ def get_spotify_credentials():
         return jsonify({"error": {"message": e.args[0] }})
     except Exception as e:
         return jsonify({"error": {"message": e.args[0] }})
-
-
-

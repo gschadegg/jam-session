@@ -1,72 +1,81 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect } from 'react'
 import './App.css'
 
+import SearchBar from './components/search/SearchBar'
+import SearchDisplay from './components/search/SearchDisplay'
+import IntroMessage from './components/IntroMessage'
+import { GET_CREDENTIALS } from './endpoints'
+import { useSpotifyAuth } from './hooks/useSpotifyAuth'
+import { useSearchData } from './hooks/useSearchData'
+import { PlaylistProvider } from './hooks/usePlaylist'
+import { useNotification } from './hooks/useNotification'
+
 function App() {
-  const [count, setCount] = useState(0)
-  const [apiMessage, setApiMessage] = useState(null)
+  const { setSpotifyAuth } = useSpotifyAuth()
+  const { Notification, setNotification } = useNotification()
+  const { searchData } = useSearchData()
 
   useEffect(() => {
-    const exampleRun = async () => {
+    const getSpotifyAuth = async () => {
       try {
-        const res = await fetch('/api/message')
-        console.log('res', res)
+        const res = await fetch(GET_CREDENTIALS)
+        if (!res.ok) {
+          setNotification(
+            'Service is currently down & could not get credentials',
+            'error'
+          )
+        }
         const result = await res.json()
-        console.log('result', result)
+        setSpotifyAuth(result)
       } catch (e) {
-        console.log.error
+        setNotification('There was an issue connecting', 'error')
       }
     }
 
-    fetch('/api/message')
-      .then((res) => {
-        console.log(typeof res, res)
-        //return res
-        return res.json()
-      })
-      .then((data) => {
-        console.log('data', data, typeof data)
-        setApiMessage(data.message)
-      })
-
-    exampleRun()
+    getSpotifyAuth()
   }, [])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <PlaylistProvider>
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+
+        <div className="drawer-content flex flex-col my-8">
+          <section className="flex mx-8 items-center mb-8">
+            <label
+              htmlFor="my-drawer-2"
+              className="btn btn-primary drawer-button mr-4 lg:hidden"
+            >
+              Open Playlist
+            </label>
+            <h1 className="text-3xl font-bold text-left">JAMsession</h1>
+          </section>
+
+          <section className="items-center flex flex-col">
+            {!searchData && <IntroMessage />}
+            <SearchBar />
+            <SearchDisplay />
+          </section>
+          <Notification />
+        </div>
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            {/* Sidebar content here */}
+            <li>
+              <a>Sidebar Item 1</a>
+            </li>
+            <li>
+              <a>Sidebar Item 2</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <h2>{apiMessage}</h2>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <iframe
-        width="100%"
-        height="152"
-        title="Spotify Embed: My Path to Spotify: Women in Engineering "
-        style={{ 'border-radius': '12px' }}
-        frameBorder={'0'}
-        allowFullScreen
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        src="https://open.spotify.com/embed/episode/7makk4oTQel546B0PZlDM5?utm_source=oembed"
-      ></iframe>
-    </>
+    </PlaylistProvider>
   )
 }
 
