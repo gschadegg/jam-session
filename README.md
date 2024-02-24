@@ -38,6 +38,12 @@ A web application where u sers can search for artists, tracks or both at the sam
    - [Postman CLI](https://learning.postman.com/docs/postman-cli/postman-cli-installation/)
 
 2. Clone Repo and run `yarn install`
+3. Create `.env` file at `jam-session/api`, add follwing variables
+   - `CLIENT_SECRET= Spotify Client Secret goes here`
+   - `CLIENT_ID= Spotify Client ID goes here`
+4. Create `.env` file at `jam-session`, add following variables
+   - `LOCAL_API_URL=localhost`
+5. Run Locally
 
 **Run Dev Locally**
 
