@@ -49,7 +49,7 @@ A web application where u sers can search for artists, tracks or both at the sam
 **Run Dev Locally**
 
 1. Open new terminal & navigate to `jam-session` folder
-2. Run `yarn start-api`, _api viewable on port 5000 || 8000/api_
+2. Run `yarn start:api`, _api viewable on port 5000 || 8000/api_
 3. Open separate new terminal & navigate to `jam-session` folder
 4. Run `yarn dev`, _application viewable on port 8000_
 
