@@ -6,16 +6,18 @@
   "scripts": {
     "dev": "vite",
     "start:api": "cd api && .venv/Scripts/flask run --no-debugger",
-    "test:api": "start yarn start-api && yarn postman-login && yarn postman-run-collection && yarn postman-lint",
+    "test:api": "start yarn start:api && yarn postman-login && yarn postman-run-collection && yarn postman-lint",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "postman-login": "postman login --with-api-key PMAK-65c2f635e99cf800015a0144-7ee101e2dc83e9056648bc851a6e9f526c",
+    "postman-login": "dotenv -- cross-env-shell postman login --with-api-key %POSTMAN_KEY%",
     "postman-run-collection": "postman collection run \"postman/collections/JAMsession.json\" -e \"10488479-a0ee1f46-90d0-45b3-b455-c22240c9644d\"",
     "postman-lint": "postman api lint 6ad7dda1-8c59-4665-96e3-bc70821e1545",
     "docker:start": "docker-compose up --build"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv-cli": "^7.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "uuid": "^9.0.1"

@@ -43,6 +43,7 @@ A web application where u sers can search for artists, tracks or both at the sam
    - `CLIENT_ID= Spotify Client ID goes here`
 4. Create `.env` file at `jam-session`, add following variables
    - `LOCAL_API_URL=localhost`
+   - `POSTMAN_KEY= Postman CLI API key goes here`
 5. Run Locally
 
 **Run Dev Locally**
