@@ -42,7 +42,7 @@ const SearchBar = () => {
         <button
           onClick={handleSearch}
           className="btn join-item"
-          disabled={!spotifyAuth}
+          disabled={!spotifyAuth || query === ''}
         >
           {spotifyAuth ? (
             'Search'
