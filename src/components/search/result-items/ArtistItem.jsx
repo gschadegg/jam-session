@@ -6,6 +6,7 @@ const ArtistItem = ({ artist }) => {
 
   return (
     <button
+      data-testid={`Search Artist Item`}
       onClick={() => submitSearch(artist?.name, 'Track')}
       className="flex flex-col text-center justify-center items-center p-2 mx-2 max-w-32 hover:bg-gray-100 rounded cursor-pointer"
     >

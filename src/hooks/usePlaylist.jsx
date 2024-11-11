@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-const PlaylistContext = React.createContext()
+export const PlaylistContext = React.createContext()
 const localUserKey = 'jamPlaylist'
 
 // manages & makes available current playlist data state

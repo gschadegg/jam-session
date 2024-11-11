@@ -6,8 +6,9 @@ const TrackItem = ({ track }) => {
 
   return (
     <div
+      data-testid={`Search Track Item`}
       className="w-full max-w-full flex py-1 hover:bg-gray-100"
-      id={track.id}
+      id={track?.id}
     >
       <div
         className="h-auto w-48 flex-none bg-cover rounded-t rounded-t-none rounded-l text-center overflow-hidden"
@@ -27,7 +28,7 @@ const TrackItem = ({ track }) => {
               Add
             </button>
           </div>
-          {track?.artists[0] && (
+          {track?.artists && track?.artists[0] && (
             <div className="flex items-center">
               <div className="text-sm">
                 <p className="text-gray-900 leading-none">

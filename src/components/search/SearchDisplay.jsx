@@ -23,8 +23,8 @@ const SearchDisplay = () => {
   return (
     <article className="p-6 w-full">
       <h2 className="text-center text-gray-600">
-        Search Results for {currentQuery?.type && currentQuery.type} "
-        {currentQuery.q}"
+        Search Results for {currentQuery?.type && currentQuery?.type} "
+        {currentQuery?.q}"
       </h2>
       {artistsList && (
         <div className="flex flex-row py-8 w-full justify-center items-start flex-wrap">
