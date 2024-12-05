@@ -69,7 +69,11 @@ View the collection in the [Postman Workspace](https://red-crater-415714.postman
 To run tests locally:
 
 1. Open new terminal & navigate to `jam-session` folder
-2. Run `yarn test:api`
+2. For Frontend Tests: Run `yarn jest`
+3. For Frontend Coverage Report: Run `yarn jest-coverage`
+4. For API Tests: Run `yarn pytest`
+5. For API Coverage Report: Run `yarn pytest-coverage`
+6. For API Postman Tests:  Run `yarn postman-tests`
 
 ## Workflow Block Diagram
 

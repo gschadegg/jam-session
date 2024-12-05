@@ -37,7 +37,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
         result = hookResult
     })
 
-    // test case: [1,2,4,5,7,8,9,8,10]; potential input: searchData= tracks: [], artists: [artistObj]
+    // TC-016: [1,2,4,5,7,8,9,8,10]; potential input: searchData= tracks: [], artists: [artistObj]
     test('renders 1 artist item', async () => {
         await act(async () => {
             result.current.setSearchData({artists: {"items": [validArtists.artist1]}})
@@ -53,7 +53,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
     
     })
     
-    // test case: [1,2,4,5,7,8,10]; potential input: searchData=  tracks: [], artists: []
+    // TC-017: [1,2,4,5,7,8,10]; potential input: searchData=  tracks: [], artists: []
     test('renders 0 artist items and 0 track items from existing empty lists', async () => {
         await act(async () => {
             result.current.setSearchData({artists: {"items": []}, tracks: {"items": []}})
@@ -73,7 +73,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
     
     })
 
-    // test case: [1,2,4,5,7,10]; potential input: searchData=  searchData = tracks: []
+    // TC-018: [1,2,4,5,7,10]; potential input: searchData = tracks: []
     test('renders 0 track items from empty existing list', async () => {
         await act(async () => {
             result.current.setSearchData({tracks: {"items": []}})
@@ -90,7 +90,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
         })
     })
 
-    // test case: [1,2,4,7,8,10]; potential input: searchData=  searchData = artists: []
+    // TC-019: [1,2,4,7,8,10]; potential input: searchData = artists: []
     test('renders 0 artist items from empty existing list', async () => {
         await act(async () => {
             result.current.setSearchData({artists: {"items": []}})
@@ -107,7 +107,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
         })
     })
 
-    // test case: [1,2,4,7,10]; potential input: searchData= {}
+    // TC-020: [1,2,4,7,10]; potential input: searchData= {}
     test('renders 0 items with empty searchData Object', async () => {
         await act(async () => {
             result.current.setSearchData({})
@@ -126,7 +126,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
         })
     })
 
-    // test case: [1,2,4,5,6,5,7,8,9,8,10]; potential input: searchData= tracks: [trackObj], artists: [artistObj]
+    // TC-021: [1,2,4,5,6,5,7,8,9,8,10]; potential input: searchData= tracks: [trackObj], artists: [artistObj]
     test('renders 1 track item and 1 artist item', async () => {
         await act(async () => {
             result.current.setSearchData({artists: {"items": [validArtists.artist1]}, tracks: {"items": [validTracks.track1]}})
@@ -147,7 +147,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
         })
     })
 
-     // test case: [1,2,4,5,6,5,7,10]; potential input: searchData= tracks: [trackObj]
+     // TC-022: [1,2,4,5,6,5,7,10]; potential input: searchData= tracks: [trackObj]
      test('renders 1 track items and 0 artists(no list)', async () => {
         await act(async () => {
             result.current.setSearchData({tracks: {"items": [validTracks.track1]}})
@@ -167,7 +167,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
         })
     })
 
-    // test case: [1,2,4,5,6,5,6,5,7,8,10]; potential input: searchData= tracks: [trackObj, trackObj ], artists: []
+    // TC-023: [1,2,4,5,6,5,6,5,7,8,10]; potential input: searchData= tracks: [trackObj, trackObj ], artists: []
     test('renders 2 track items and 0 artists(empty list)', async () => {
         await act(async () => {
             result.current.setSearchData({tracks: {"items": [validTracks.track1, validTracks.track2]}, artists: {"items": []}})
@@ -189,7 +189,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
         })
     })
 
-    // test case: [1,2,3]; potential input: searchData=  null 
+    // TC-024: [1,2,3]; potential input: searchData=  null 
     test('renders 0 items with searchData set to null', async () => {
         await act(async () => {
             result.current.setSearchData(null)
@@ -204,7 +204,7 @@ describe(('Testing SearchDisplay Call Graph'), () =>{
         })
     })
 
-     // test case: [1,2,4,7,8,9,8,9,8,10]; potential input: searchData= artists: [artistObj, artistObj]
+     //TC-025: [1,2,4,7,8,9,8,9,8,10]; potential input: searchData= artists: [artistObj, artistObj]
     test('renders 2 artist items and 0 track(no list)', async () => {
         await act(async () => {
             result.current.setSearchData({artists: {"items": [validArtists.artist1, validArtists.artist2]}})

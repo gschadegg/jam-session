@@ -25,6 +25,7 @@ describe(('Testing insertTrack'), () =>{
     })
   })
 
+  //TC-026
   test('add valid track to playlist', async () => {
     expect( result.current.playlist).toEqual([])
 
@@ -36,6 +37,7 @@ describe(('Testing insertTrack'), () =>{
 
   })
 
+  //TC-027
   test('add invalid track object to playlist', async() => {  
     await act(async () => {
       result.current.insertTrack(invalidTrack)
@@ -45,6 +47,7 @@ describe(('Testing insertTrack'), () =>{
   
   })
 
+  //TC-028
   test('add empty object to playlist', async() => { 
     await act(async () => {
       result.current.insertTrack({})
@@ -54,6 +57,7 @@ describe(('Testing insertTrack'), () =>{
   
   })
 
+  //TC-029
   test('add null to playlist', async() => { 
  
     await act(async () => {
@@ -64,6 +68,7 @@ describe(('Testing insertTrack'), () =>{
   
   })
 
+  //TC-030
   test('add valid track to playlist that doesn\'t exist', async() => { 
     await act(async () => {
       result.current.setPlaylist(null)
@@ -75,6 +80,7 @@ describe(('Testing insertTrack'), () =>{
   
   })
 
+  //TC-031
   test('add valid track to playlist that already has content', async() => { 
     await act(async () => {
       result.current.setPlaylist([validTracks.track1])
@@ -110,6 +116,7 @@ describe(('Testing removeTrack'), () =>{
     })
   })
 
+  //TC-032
   test('remove valid playlist track from playlist', async () => {
 
     expect( result.current.playlist.length).toEqual(3)
@@ -122,6 +129,7 @@ describe(('Testing removeTrack'), () =>{
 
   })
 
+  //TC-032
   test('remove non-existing track id from playlist', async () => {
 
     expect( result.current.playlist.length).toEqual(3)
@@ -133,6 +141,7 @@ describe(('Testing removeTrack'), () =>{
     await waitFor(() => expect(result.current.playlist.length).toEqual(3))
   })
 
+  //TC-033
   test('remove null as id from playlist', async () => {
 
     expect( result.current.playlist.length).toEqual(3)
@@ -144,7 +153,8 @@ describe(('Testing removeTrack'), () =>{
     await waitFor(() => expect(result.current.playlist.length).toEqual(3))
   })
 
-  test('remove null as id from playlist', async () => {
+  //TC-034
+  test('remove negative number as id from playlist', async () => {
 
     expect( result.current.playlist.length).toEqual(3)
 
@@ -155,17 +165,7 @@ describe(('Testing removeTrack'), () =>{
     await waitFor(() => expect(result.current.playlist.length).toEqual(3))
   })
 
-  test('remove negitive number id from playlist', async () => {
-
-    expect( result.current.playlist.length).toEqual(3)
-
-    await act(async () => {
-      result.current.removeTrack(-5)
-    })
-
-    await waitFor(() => expect(result.current.playlist.length).toEqual(3))
-  })
-
+  //TC-036
   test('remove track id from an empty playlist', async () => {
     await act(async () => {
       result.current.setPlaylist([])
@@ -215,6 +215,7 @@ describe(('Testing submitSearch'), () =>{
 
   })
 
+  //TC-001
   test('search for artists with query', async () => {
     global.fetch = mockSearchRequest(false, true)
     
@@ -232,6 +233,7 @@ describe(('Testing submitSearch'), () =>{
 
   })
 
+  //TC-002
   test('search for tracks with query', async () => {
     global.fetch = mockSearchRequest(true, false)
     
@@ -249,6 +251,7 @@ describe(('Testing submitSearch'), () =>{
 
   })
 
+  //TC-003
   test('search for invalid type with query', async () => {
     global.fetch = mockSearchRequest(true, true )
     
@@ -266,6 +269,7 @@ describe(('Testing submitSearch'), () =>{
 
   })
 
+  //TC-004
   test('search for artist with no query', async () => {
     global.fetch = mockSearchRequest(false, true)
     
@@ -282,6 +286,7 @@ describe(('Testing submitSearch'), () =>{
     })
   })
 
+  //TC-005
   test('search for artist with blank query', async () => {
     global.fetch = mockSearchRequest(false, false, true)
     
@@ -298,6 +303,7 @@ describe(('Testing submitSearch'), () =>{
     })
   })
 
+  //TC-006
   test('search with spaces for a query', async () => {
     global.fetch = mockSearchRequest(false, false, true)
     
@@ -314,13 +320,14 @@ describe(('Testing submitSearch'), () =>{
     })
   })
 
+  //TC-007
   test('search for a null type', async () => {
     global.fetch = mockSearchRequest(true, true)
     
     await act(async () => {
       result.current.submitSearch('Queen', null)
     })
-    console.debug('search result: ', result, result.current.searchData)
+
     expect(fetch).toHaveBeenCalledTimes(1)
     await waitFor(() => {
       expect(result.current.currentQuery.q).toEqual('Queen')

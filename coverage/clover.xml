@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1733426373988" clover="3.2.0">
+  <project timestamp="1733426373988" name="All files">
+    <metrics statements="121" coveredstatements="112" conditionals="32" coveredconditionals="27" methods="28" coveredmethods="23" elements="181" coveredelements="162" complexity="0" loc="121" ncloc="121" packages="5" files="9" classes="9"/>
+    <package name="src">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="endpoints.js" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\endpoints.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.___tests___">
+      <metrics statements="21" coveredstatements="21" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1"/>
+      <file name="dataMocks.js" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\___tests___\dataMocks.js">
+        <metrics statements="21" coveredstatements="21" conditionals="7" coveredconditionals="7" methods="1" coveredmethods="1"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="88" count="2" type="stmt"/>
+        <line num="173" count="2" type="stmt"/>
+        <line num="257" count="2" type="stmt"/>
+        <line num="300" count="2" type="stmt"/>
+        <line num="336" count="2" type="stmt"/>
+        <line num="379" count="2" type="stmt"/>
+        <line num="385" count="2" type="stmt"/>
+        <line num="391" count="2" type="stmt"/>
+        <line num="397" count="2" type="stmt"/>
+        <line num="405" count="2" type="stmt"/>
+        <line num="413" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="414" count="7" type="stmt"/>
+        <line num="415" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="416" count="2" type="stmt"/>
+        <line num="417" count="2" type="stmt"/>
+        <line num="418" count="2" type="stmt"/>
+        <line num="420" count="5" type="stmt"/>
+        <line num="421" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="422" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="423" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.search">
+      <metrics statements="10" coveredstatements="10" conditionals="10" coveredconditionals="9" methods="3" coveredmethods="3"/>
+      <file name="SearchDisplay.jsx" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\components\search\SearchDisplay.jsx">
+        <metrics statements="10" coveredstatements="10" conditionals="10" coveredconditionals="9" methods="3" coveredmethods="3"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="28" type="stmt"/>
+        <line num="9" count="28" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="18" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.search.result-items">
+      <metrics statements="8" coveredstatements="6" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="2"/>
+      <file name="ArtistItem.jsx" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\components\search\result-items\ArtistItem.jsx">
+        <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="TrackItem.jsx" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\components\search\result-items\TrackItem.jsx">
+        <metrics statements="4" coveredstatements="3" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.hooks">
+      <metrics statements="80" coveredstatements="73" conditionals="12" coveredconditionals="8" methods="20" coveredmethods="17"/>
+      <file name="useNotification.jsx" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\hooks\useNotification.jsx">
+        <metrics statements="18" coveredstatements="15" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="3"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="24" type="stmt"/>
+        <line num="8" count="24" type="stmt"/>
+        <line num="9" count="24" type="stmt"/>
+        <line num="12" count="24" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="24" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="24" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="63" count="49" type="stmt"/>
+        <line num="64" count="49" type="stmt"/>
+      </file>
+      <file name="usePlaylist.jsx" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\hooks\usePlaylist.jsx">
+        <metrics statements="33" coveredstatements="31" conditionals="4" coveredconditionals="4" methods="10" coveredmethods="9"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="59" type="stmt"/>
+        <line num="12" count="55" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="18" count="55" type="stmt"/>
+        <line num="19" count="10" type="stmt"/>
+        <line num="23" count="55" type="stmt"/>
+        <line num="24" count="21" type="stmt"/>
+        <line num="25" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="10" type="stmt"/>
+        <line num="29" count="10" type="stmt"/>
+        <line num="33" count="55" type="stmt"/>
+        <line num="34" count="22" type="stmt"/>
+        <line num="35" count="22" type="stmt"/>
+        <line num="37" count="22" type="stmt"/>
+        <line num="38" count="9" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="45" count="55" type="stmt"/>
+        <line num="46" count="5" type="stmt"/>
+        <line num="47" count="12" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+        <line num="54" count="55" type="stmt"/>
+        <line num="55" count="21" type="stmt"/>
+        <line num="56" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="55" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="81" count="49" type="stmt"/>
+        <line num="82" count="49" type="stmt"/>
+      </file>
+      <file name="useSearchData.jsx" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\hooks\useSearchData.jsx">
+        <metrics statements="22" coveredstatements="20" conditionals="6" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="49" type="stmt"/>
+        <line num="11" count="49" type="stmt"/>
+        <line num="13" count="49" type="stmt"/>
+        <line num="14" count="49" type="stmt"/>
+        <line num="17" count="49" type="stmt"/>
+        <line num="18" count="7" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+        <line num="26" count="7" type="stmt"/>
+        <line num="31" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="7" type="stmt"/>
+        <line num="35" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="7" type="stmt"/>
+        <line num="40" count="7" type="stmt"/>
+        <line num="41" count="7" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="50" count="49" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="72" count="81" type="stmt"/>
+        <line num="73" count="81" type="stmt"/>
+      </file>
+      <file name="useSpotifyAuth.jsx" path="C:\Development\SWE Masters Projects\sweng 861- Software Construction\final\jam_session\jam-session\src\hooks\useSpotifyAuth.jsx">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="17" type="stmt"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="49" type="stmt"/>
+        <line num="18" count="49" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
