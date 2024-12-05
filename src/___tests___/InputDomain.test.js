@@ -129,7 +129,7 @@ describe(('Testing removeTrack'), () =>{
 
   })
 
-  //TC-032
+  //TC-033
   test('remove non-existing track id from playlist', async () => {
 
     expect( result.current.playlist.length).toEqual(3)
@@ -141,7 +141,7 @@ describe(('Testing removeTrack'), () =>{
     await waitFor(() => expect(result.current.playlist.length).toEqual(3))
   })
 
-  //TC-033
+  //TC-034
   test('remove null as id from playlist', async () => {
 
     expect( result.current.playlist.length).toEqual(3)
@@ -153,7 +153,7 @@ describe(('Testing removeTrack'), () =>{
     await waitFor(() => expect(result.current.playlist.length).toEqual(3))
   })
 
-  //TC-034
+  //TC-035
   test('remove negative number as id from playlist', async () => {
 
     expect( result.current.playlist.length).toEqual(3)
@@ -165,7 +165,7 @@ describe(('Testing removeTrack'), () =>{
     await waitFor(() => expect(result.current.playlist.length).toEqual(3))
   })
 
-  //TC-036
+  //TC-037
   test('remove track id from an empty playlist', async () => {
     await act(async () => {
       result.current.setPlaylist([])
